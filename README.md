@@ -56,6 +56,7 @@ If you find this work helpful for your research, please kindly consider citing o
 
 
 ## Updates
+- **[10/2025]** - We have published the baseline models and our key methods for data argmentation. See <a href="https://github.com/robosense2025/track5" target="_blank" rel="noopener noreferrer">GitHub repo</a> for more details for data preparation and installation.
 - **[07/2025]** - The **Pi3DET** dataset has been extended to <strong>Track 5: Cross-Platform 3D Object Detection</strong> of the <a href="https://robosense2025.github.io/" target="_blank">RoboSense Challenge</a> at <a href="https://www.iros25.org/" target="_blank">IROS 2025</a>. See the <a href="https://robosense2025.github.io/track5" target="_blank" rel="noopener noreferrer">track homepage</a> and <a href="https://github.com/robosense2025/track5" target="_blank" rel="noopener noreferrer">GitHub repo</a> for more details.
 - **[07/2025]** - The [project page](https://pi3det.github.io/) is online. :rocket:
 - **[07/2025]** - This work has been accepted to [ICCV 2025](https://iccv.thecvf.com/Conferences/2025). See you in Honolulu! 🌸
@@ -64,12 +65,19 @@ If you find this work helpful for your research, please kindly consider citing o
 
 ## Outline
 
-- [Installation](#gear-installation)
-- [Data Preparation](#hotsprings-data-preparation)
-- [Getting Started](#rocket-getting-started)
-- [Model Zoo](#snake-model-zoo)
-- [Pi3DET Benchmark](#triangular_ruler-pi3det-benchmark)
-- [TODO List](#memo-todo-list)
+- [Updates](#updates)
+- [Outline](#outline)
+- [:gear: Installation](#gear-installation)
+- [:hotsprings: Data Preparation](#hotsprings-data-preparation)
+- [:rocket: Getting Started](#rocket-getting-started)
+- [:snake: Model Zoo](#snake-model-zoo)
+- [:triangular\_ruler: Pi3DET Benchmark](#triangular_ruler-pi3det-benchmark)
+  - [Statistical Analysis](#statistical-analysis)
+  - [Methodology](#methodology)
+- [Pi3DET Dataset](#pi3det-dataset)
+  - [Detailed statistical information](#detailed-statistical-information)
+  - [Dataset Examples](#dataset-examples)
+- [:memo: TODO List](#memo-todo-list)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
