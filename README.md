@@ -43,7 +43,7 @@ This work focuses on the practical yet challenging task of 3D object detection f
 
 
 ### :books: Citation
-If you find this work helpful for your research, please kindly consider citing our paper:
+If you find this work helpful for your research, please kindly consider citing our papers:
 
 ```bibtex
 @inproceedings{liang2025pi3det,
@@ -52,6 +52,14 @@ If you find this work helpful for your research, please kindly consider citing o
     booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision},
     pages     = {27725-27738},
     year      = {2025},
+}
+```
+```bibtex
+@misc{robosense_challenge_2025,
+    title     = {The {RoboSense} Challenge: Sense Anything, Navigate Anywhere, Adapt Across Platforms},
+    author    = {Kong, Lingdong and Xie, Shaoyuan and Gong, Zeying and Li, Ye and Chu, Meng and Liang, Ao and Dong, Yuhao and Hu, Tianshuai and Qiu, Ronghe and Li, Rong and Hu, Hanjiang and Lu, Dongyue and Yin, Wei and Ding, Wenhao and Li, Linfeng and Song, Hang and Zhang, Wenwei and Ma, Yuexin and Liang, Junwei and Zheng, Zhedong and Ng, Lai Xing and Cottereau, Benoit R. and Ooi, Wei Tsang and Liu, Ziwei and Zhang, Zhanpeng and Qiu, Weichao and Zhang, Wei and Ao, Ji and Zheng, Jiangpeng and Wang, Siyu and Yang, Guang and Zhang, Zihao and Zhong, Yu and Gao, Enzhu and Zheng, Xinhan and Wang, Xueting and Li, Shouming and Gao, Yunkai and Lan, Siming and Han, Mingfei and Hu, Xing and Malic, Dusan and Fruhwirth-Reisinger, Christian and Prutsch, Alexander and Lin, Wei and Schulter, Samuel and Possegger, Horst and Li, Linfeng and Zhao, Jian and Yang, Zepeng and Song, Yuhang and Lin, Bojun and Zhang, Tianle and Yuan, Yuchen and Zhang, Chi and Li, Xuelong and Kim, Youngseok and Hwang, Sihwan and Jeong, Hyeonjun and Wu, Aodi and Luo, Xubo and Xiao, Erjia and Zhang, Lingfeng and Tang, Yingbo and Cheng, Hao and Xu, Renjing and Ding, Wenbo and Zhou, Lei and Chen, Long and Ye, Hangjun and Hao, Xiaoshuai and Li, Shuangzhi and Shen, Junlong and Li, Xingyu and Ruan, Hao and Lin, Jinliang and Luo, Zhiming and Zang, Yu and Wang, Cheng and Wang, Hanshi and Gong, Xijie and Yang, Yixiang and Ma, Qianli and Zhang, Zhipeng and Shi, Wenxiang and Zhou, Jingmeng and Zeng, Weijun and Xu, Kexin and Zhang, Yuchen and Fu, Haoxiang and Hu, Ruibin and Ma, Yanbiao and Feng, Xiyan and Zhang, Wenbo and Zhang, Lu and Zhuge, Yunzhi and Lu, Huchuan and He, You and Yu, Seungjun and Park, Junsung and Lim, Youngsun and Shim, Hyunjung and Liang, Faduo and Wang, Zihang and Peng, Yiming and Zong, Guanyu and Li, Xu and Wang, Binghao and Wei, Hao and Ma, Yongxin and Shi, Yunke and Liu, Shuaipeng and Kong, Dong and Lin, Yongchun and Yang, Huitong and Lei, Liang and Li, Haoang and Zhang, Xinliang and Wang, Zhiyong and Wang, Xiaofeng and Fu, Yuxia and Luo, Yadan and Etchegaray, Djamahl and Li, Yang and Li, Congfei and Sun, Yuxiang and Zhu, Wenkai and Xu, Wang and Li, Linru and Liao, Longjie and Yan, Jun and Wang, Benwu and Ren, Xueliang and Yue, Xiaoyu and Zheng, Jixian and Wu, Jinfeng and Qin, Shurui and Cong, Wei and He, Yao},
+    howpublished = {\url{https://robosense2025.github.io}},
+    year      = {2025}
 }
 ```
 
