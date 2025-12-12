@@ -192,3 +192,17 @@ This work is developed based on the [MMDetection3D](https://github.com/open-mmla
 > MMDetection3D is an open-source toolbox based on PyTorch, towards the next-generation platform for general 3D perception. It is a part of the OpenMMLab project developed by MMLab.
 
 Part of the benchmarked models are from the [OpenPCDet](https://github.com/open-mmlab/OpenPCDet) and [3DTrans](https://github.com/PJLab-ADG/3DTrans) projects.
+
+
+## Related Projects
+
+| :sunglasses: Awesome | Projects |
+|:-:|:-|
+| |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/worldbench_survey.webp"> | **3D and 4D World Modeling: A Survey**<br>[[GitHub Repo](https://github.com/worldbench/survey)] - [[Project Page](https://worldbench.github.io/survey)] - [[Paper](https://worldbench.github.io/assets_common/papers/survey.pdf)] |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/worldlens.png"> | **WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World**<br>[[GitHub Repo](https://github.com/worldbench/WorldLens)] - [[Project Page](https://worldbench.github.io/worldlens)] - [[Paper](https://worldbench.github.io/assets_common/papers/worldlens.pdf)] |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/lidarcrafter.png"> | **LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences**<br>[[GitHub Repo](https://github.com/lidarcrafter/toolkit)] - [[Project Page]](https://lidarcrafter.github.io/) - [[Paper](https://arxiv.org/abs/2508.03692)] |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/3eed.png"> | **3EED: Ground Everything Everywhere in 3D**<br>[[GitHub Repo](https://github.com/worldbench/3EED)] - [[Project Page]](https://project-3eed.github.io/) - [[Paper](https://arxiv.org/abs/2511.01755)] |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/drivebench.png"> | **Are VLMs Ready for Autonomous Driving? A Study from Reliability, Data & Metric Perspectives**<br>[[GitHub Repo](https://github.com/drive-bench/toolkit)] - [[Project Page]](https://drive-bench.github.io/) - [[Paper](https://arxiv.org/abs/2501.04003)] |
+| <img width="95px" src="https://github.com/ldkong1205/ldkong1205/blob/master/Images/dynamiccity.webp"> | **DynamicCity: Large-Scale 4D Occupancy Generation from Dynamic Scenes**<br>[[GitHub Repo](https://github.com/3DTopia/DynamicCity)] - [[Project Page]](https://dynamic-city.github.io/) - [[Paper](https://arxiv.org/abs/2410.18084)] |
+| |
