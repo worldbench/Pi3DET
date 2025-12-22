@@ -1,0 +1,75 @@
+DATASET: 'OFFM3EDDatasetSeqs'
+DATA_PATH: '../data/m3ed'
+
+POINT_CLOUD_RANGE: [-75.2, -75.2, -2, 75.2, 75.2, 4]
+MAX_SWEEPS: 1
+DATA_SPLIT: {
+    'train': train,
+    'test': val
+}
+
+INFO_SEQUENCES: {
+    'train': [
+      processed/Falcon/Outdoor_Day/penno_parking_1,
+    ],
+    'test': [
+      processed/Falcon/Outdoor_Day/penno_parking_2,
+      ],
+}
+
+OCC_GTSP: # occupancy gt sampling
+    VOXEL_SIZE: [0.4, 0.4, 1.0]
+
+DATA_AUGMENTOR:
+    DISABLE_AUG_LIST: ['random_object_scaling', 'random_object_rotation']
+    AUG_CONFIG_LIST:
+        - NAME: random_object_scaling
+          SCALE_UNIFORM_NOISE: [ 0.75, 0.95 ]
+
+        - NAME: normalize_object_size
+          SIZE_RES: [ -0.91, -0.49, -0.26 ]
+
+        - NAME: random_object_rotation
+          ROT_PROB: 1.0
+          ROT_UNIFORM_NOISE: [ -0.78539816, 0.78539816 ]
+
+        - NAME: random_world_flip
+          ALONG_AXIS_LIST: [ 'x', 'y' ]
+
+        - NAME: random_world_rotation
+          WORLD_ROT_ANGLE: [ -0.78539816, 0.78539816 ]
+
+        - NAME: random_world_scaling
+          WORLD_SCALE_RANGE: [ 0.95, 1.05 ]
+
+
+POINT_FEATURE_ENCODING: {
+    encoding_type: absolute_coordinates_encoding,
+    used_feature_list: ['x', 'y', 'z'],
+    src_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp'],
+}
+
+DATA_PROCESSOR:
+    - NAME: mask_points_and_boxes_outside_range
+      REMOVE_OUTSIDE_BOXES: True
+
+    - NAME: shuffle_points
+      SHUFFLE_ENABLED: {
+        'train': True,
+        'test': False
+      }
+
+    - NAME: transform_points_to_voxels
+      VOXEL_SIZE: [0.1, 0.1, 0.15]
+      MAX_POINTS_PER_VOXEL: 5
+      MAX_NUMBER_OF_VOXELS: {
+        'train': 80000,
+        'test': 90000
+      }
+
+TEST:
+    BOX_FILTER: {
+        'USE_IMAGE_AREA_FILTER': True,
+        'FOV_FILTER': True,
+        'LIMIT_RANGE': [-75.2, -75.2, -2, 75.2, 75.2, 4]
+    }

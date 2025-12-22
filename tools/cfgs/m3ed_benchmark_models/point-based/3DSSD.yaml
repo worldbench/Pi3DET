@@ -1,0 +1,182 @@
+CLASS_NAMES: ['Vehicle']
+
+DATA_CONFIG:
+    _BASE_CONFIG_: cfgs/dataset_configs/m3ed/OD/m3ed_dataset_seq.yaml
+    INFO_SEQUENCES: {
+        'train': [
+            processed/Car/Urban_Day/penno_big_loop,
+            ],
+        'test': [processed/Car/Urban_Day/car_urban_day_city_hall],
+    }
+    SHIFT_COOR: [0.0, 0.0, 1.5]
+
+    DATA_PROCESSOR:
+        -   NAME: mask_points_and_boxes_outside_range
+            REMOVE_OUTSIDE_BOXES: True
+
+        -   NAME: sample_points
+            NUM_POINTS: {
+                'train': 16384,
+                'test': 16384
+            }
+
+        -   NAME: shuffle_points
+            SHUFFLE_ENABLED: {
+                'train': True,
+                'test': False
+            }
+
+MODEL:
+    NAME: 3DSSD
+
+    BACKBONE_3D:
+        NAME: SSDBackbone
+        SA_CONFIG:
+            NPOINTS: [[4096], [512], [256, 256], [256, 0], [-1], [256]]
+            RADIUS: [[0.2,0.4,0.8], [0.4,0.8,1.6], [1.6,3.2,4.8], [], [], [4.8, 6.4]]
+            NSAMPLE: [[32,32,64], [32,32,64], [32,32,32], [], [], [16, 32]]
+            MLPS: [[[16,16,32], [16,16,32], [32,32,64]],
+                   [[64,64,128], [64,64,128], [64,96,128]],
+                   [[128,128,256], [128,192,256], [128,256,256]],
+                   [],
+                   [128],
+                   [[256,256,512], [256,512,1024]]]
+            FPS_TYPE: [['D-FPS'], ['D-FPS'], ['D-FPS', 'D-FPS'], ['D-FPS', 'D-FPS'], [], ['D-FPS']]
+            FPS_RANGE: [[-1], [-1], [512, -1], [256, -1], [-1], [-1]]
+            LAYER_TYPE: ['SA_Layer', 'SA_Layer', 'SA_Layer', 'SA_Layer', 'Vote_Layer', 'SA_Layer']
+            LAYER_NAME: ['layer1', 'layer2', 'layer3', 'vote', 'vote', 'layer4']
+            DILATED_GROUP: [True, True, True, False, False, False]
+            CTR_INDEX: [-1, -1, -1, -1, -1, 5]
+            AGGREATION_CHANNEL: [64, 128, 256, 256, -1, 512]
+            LAYER_INPUT: [0, 1, 2, 3, 4, 3]
+            MAX_TRANSLATE_RANGE: [-3.0, -2.0, -3.0]
+
+        FP_MLPS: [[128, 128], [256, 256], [512, 512], [512, 512]]
+
+    POINT_HEAD:
+        NAME: PointHeadBox3DSSD
+        CLS_FC: [256, 256]
+        REG_FC: [256, 256]
+        CLASS_AGNOSTIC: False
+        USE_POINT_FEATURES_BEFORE_FUSION: False
+        TARGET_CONFIG:
+            GT_EXTRA_WIDTH: [0.2, 0.2, 0.2]
+            BOX_CODER: PointResidual_BinOri_Coder
+            BOX_CODER_CONFIG: {
+                'use_mean_size': True,
+                'mean_size': [
+                    [3.9, 1.6, 1.56],
+                    [0.8, 0.6, 1.73],
+                    [1.76, 0.6, 1.73]
+                ]
+            }
+
+        LOSS_CONFIG:
+            LOSS_REG: WeightedSmoothL1Loss
+            CORNER_LOSS_REGULARIZATION: True
+            CENTERNESS_REGULARIZATION: True
+            LOSS_WEIGHTS: {
+                'point_cls_weight': 1.0,
+                'point_box_weight': 1.0,
+                'corner_weight': 1.0,
+                'code_weights': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+            }
+
+#    ROI_HEAD:
+#        NAME: PointRCNNHead
+#        CLASS_AGNOSTIC: True
+#
+#        ROI_POINT_POOL:
+#            POOL_EXTRA_WIDTH: [0.0, 0.0, 0.0]
+#            NUM_SAMPLED_POINTS: 512
+#            DEPTH_NORMALIZER: 70.0
+#
+#        XYZ_UP_LAYER: [128, 128]
+#        CLS_FC: [256, 256]
+#        REG_FC: [256, 256]
+#        DP_RATIO: 0.0
+#        USE_BN: False
+#
+#        SA_CONFIG:
+#            NPOINTS: [128, 32, -1]
+#            RADIUS: [0.2, 0.4, 100]
+#            NSAMPLE: [16, 16, 16]
+#            MLPS: [[128, 128, 128],
+#                   [128, 128, 256],
+#                   [256, 256, 512]]
+#
+#        NMS_CONFIG:
+#            TRAIN:
+#                NMS_TYPE: nms_gpu
+#                MULTI_CLASSES_NMS: False
+#                NMS_PRE_MAXSIZE: 9000
+#                NMS_POST_MAXSIZE: 256
+#                NMS_THRESH: 0.8
+#            TEST:
+#                NMS_TYPE: nms_gpu
+#                MULTI_CLASSES_NMS: False
+#                NMS_PRE_MAXSIZE: 9000
+#                NMS_POST_MAXSIZE: 100
+#                NMS_THRESH: 0.85
+#
+#        TARGET_CONFIG:
+#            BOX_CODER: ResidualCoder
+#            ROI_PER_IMAGE: 128
+#            FG_RATIO: 0.5
+#
+#            SAMPLE_ROI_BY_EACH_CLASS: True
+#            CLS_SCORE_TYPE: cls
+#
+#            CLS_FG_THRESH: 0.6
+#            CLS_BG_THRESH: 0.45
+#            CLS_BG_THRESH_LO: 0.1
+#            HARD_BG_RATIO: 0.8
+#
+#            REG_FG_THRESH: 0.55
+#
+#        LOSS_CONFIG:
+#            CLS_LOSS: BinaryCrossEntropy
+#            REG_LOSS: smooth-l1
+#            CORNER_LOSS_REGULARIZATION: True
+#            LOSS_WEIGHTS: {
+#                'rcnn_cls_weight': 1.0,
+#                'rcnn_reg_weight': 1.0,
+#                'rcnn_corner_weight': 1.0,
+#                'code_weights': [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+#            }
+
+    POST_PROCESSING:
+        RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+        SCORE_THRESH: 0.1
+        OUTPUT_RAW_SCORE: False
+
+        EVAL_METRIC: kitti
+
+        NMS_CONFIG:
+            MULTI_CLASSES_NMS: False
+            NMS_TYPE: nms_gpu
+            NMS_THRESH: 0.1
+            NMS_PRE_MAXSIZE: 4096
+            NMS_POST_MAXSIZE: 500
+
+
+OPTIMIZATION:
+    BATCH_SIZE_PER_GPU: 4
+    NUM_EPOCHS: 80
+
+    OPTIMIZER: adam_onecycle
+    LR: 0.01
+    WEIGHT_DECAY: 0.01
+    MOMENTUM: 0.9
+
+    MOMS: [0.95, 0.85]
+    PCT_START: 0.4
+    DIV_FACTOR: 10
+    DECAY_STEP_LIST: [35, 45]
+    LR_DECAY: 0.1
+    LR_CLIP: 0.0000001
+
+    LR_WARMUP: False
+    WARMUP_EPOCH: 1
+
+    GRAD_NORM_CLIP: 10
